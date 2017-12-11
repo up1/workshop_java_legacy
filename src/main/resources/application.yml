@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  profiles:
+    active: demo
+
+
+flyway:
+  enabled: true
+
+security:
+  basic:
+    enabled: false
