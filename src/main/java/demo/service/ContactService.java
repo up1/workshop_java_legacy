@@ -17,17 +17,17 @@ public class ContactService {
     private final AtomicInteger idGeneration = new AtomicInteger(1000);
 
     @Autowired
-    private ContactRepository contactRepo;
+    private ContactRepository contactRepository;
 
 
     public List<Contact> searchContacts(String keyword) {
         keyword = (keyword == null) ? "" : keyword.toLowerCase();
 
-        return contactRepo.searchContacts(keyword);
+        return contactRepository.searchContacts(keyword);
     }
 
     public Contact load(String id) {
-        return contactRepo.findOne(id);
+        return contactRepository.findOne(id);
     }
 
     @Transactional
@@ -36,17 +36,17 @@ public class ContactService {
             contact.setId(String.valueOf(idGeneration.incrementAndGet()));
         }
 
-        return contactRepo.save(contact);
+        return contactRepository.save(contact);
     }
 
     @Transactional
     public void deleteContacts(String id) {
-        contactRepo.deleteContact(id);
+        contactRepository.deleteContact(id);
     }
 
     @Transactional
     public void deleteAllContacts() {
-        contactRepo.deleteAllInBatch();
+        contactRepository.deleteAllInBatch();
     }
 
 }
